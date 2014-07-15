@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block showsimilar %}
+
+    <h2>Similar Boards with {{part_number}} <a href="/showdetail/{{ part_number }}/"><input type="button" class="btn btn-success" value="Return to Board"/></a> </h2>
+
+    <table class="table table-striped" align="left">
+        <tr>
+          <th>Part Number</th>
+          <th>Part Name</th>
+          <th>Estimated Time</th>
+          <th>Actual Time</th>
+          <th>Pins</th>
+          <th>Components</th>
+          <th>Pin_density</th>
+          <th>Width</th>
+          <th>Height</th>
+          <th>Total Layers</th>
+          <th>Buses</th>
+          <th>Constraint Sets</th>
+          <th>Diff Pairs</th>
+          <th>Match Groups</th>
+          <th>Net Classes</th>
+          <th>Net With Constraints</th>
+          <th>Pin Pairs</th>
+          <th>Xnets</th>
+        </tr>
+        {% for board in Combines %}
+        <tr>
+              <td><a href="{% url 'showdetail' board.part_number%}">{{ board.part_number }}</a> </td>
+              <td>{{ board.part_name }}</td>
+              <td>{{ board.estimated_total_days }}</td>
+              <td>{{ board.total_days }}</td>
+              <td>{{ board.pins }}</td>
+              <td>{{ board.components}}</td>
+              <td>{{ board.pin_density}}</td>
+              <td>{{ board.board_width}}</td>
+              <td>{{ board.board_height}}</td>
+              <td>{{ board.total_layers }}</td>
+              <td>{{ board.buses }}</td>
+              <td>{{ board.constraintsets }}</td>
+              <td>{{ board.diffpairs }}</td>
+              <td>{{ board.matchgroups}}</td>
+              <td>{{ board.netclasses}}</td>
+              <td>{{ board.net_with_constraints}}</td>
+              <td>{{ board.pinpairs}}</td>
+              <td>{{ board.xnets}}</td>
+         </tr>
+        {% empty %}
+            <p>No results found.</p>
+        {% endfor %}
+</table>
+
+</div>
+{% endblock %}
+
+

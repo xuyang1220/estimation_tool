@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block advancedsearch %}
+     <div class="container">
+        <div class="well">
+            <h2>Search For Boards</h2>
+            <form class="form-horizontal" method="post" action=".">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">Pins</div>
+                <div class="col-md-4">
+                <label for="id_pin_lower_bound">from:</label>
+                    <input id="id_pin_lower_bound" type="text" name="pin_lower_bound" maxlength="100" /></div>
+                <div class="col-md-4">
+                <label for="id_pin_upper_bound">to:</label>
+                    <input id="id_pin_upper_bound" type="text" name="pin_upper_bound" maxlength="100" /></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">Components</div>
+                <div class="col-md-4">
+                <label for="id_component_lower_bound">from:</label>
+                    <input id="id_component_lower_bound" type="text" name="component_lower_bound" maxlength="100" /></div>
+                <div class="col-md-4">
+                <label for="id_component_upper_bound">to:</label>
+                    <input id="id_component_upper_bound" type="text" name="component_upper_bound" maxlength="100" /></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">Pin Density</div>
+                <div class="col-md-4">
+                <label for="id_pin_density_lower">from:</label>
+                    <input id="id_pin_density_lower" type="text" name="pin_density_lower" maxlength="100" /></div>
+                <div class="col-md-4">
+                <label for="id_pin_density_upper">to:</label>
+                    <input id="id_pin_density_upper" type="text" name="pin_density_upper" maxlength="100" /></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">Boardsize</div>
+                <div class="col-md-4">
+                <label for="id_board_size_lower">from:</label>
+                    <input id="id_board_size_lower" type="text" name="board_size_lower" maxlength="100" /></div>
+                <div class="col-md-4">
+                <label for="id_board_size_upper">to:</label>
+                    <input id="id_board_size_upper" type="text" name="board_size_upper" maxlength="100" /></div>
+            </div>
+
+            <p class="form-actions">
+                <input type="submit" value="Search" class="btn btn-primary">
+            </p>
+            </form>
+        </div>
+     </div>
+        {%if queryset%}
+                <h3>Results</h3>
+                <table class="table table-striped">
+                <tr>
+                    <tr>
+                      <th>Part Number</th>
+                      <th>Part Name</th>
+                      <th>Estimated Time</th>
+                      <th>Actual Time</th>
+                      <th>Pins</th>
+                      <th>Components</th>
+                      <th>Pin_density</th>
+                      <th>Width</th>
+                      <th>Height</th>
+                      <th>Total Layers</th>
+                      <th>Buses</th>
+                      <th>Constraint Sets</th>
+                      <th>Diff Pairs</th>
+                      <th>Match Groups</th>
+                      <th>Net Classes</th>
+                      <th>Net With Constraints</th>
+                      <th>Pin Pairs</th>
+                      <th>Xnets</th>
+                    </tr>
+                </tr>
+                {% for result in queryset %}
+                <tr>
+                      <td><a href="{% url 'showdetail' result.part_number%}">{{ result.part_number }}</a> </td>
+                      <td>{{ result.part_name }}</td>
+                      <td>{{ result.estimated_total_days }}</td>
+                      <td>{{ result.total_days }}</td>
+                      <td>{{ result.pins }}</td>
+                      <td>{{ result.components}}</td>
+                      <td>{{ result.pin_density}}</td>
+                      <td>{{ result.board_width}}</td>
+                      <td>{{ result.board_height}}</td>
+                      <td>{{ result.total_layers }}</td>
+                      <td>{{ result.buses }}</td>
+                      <td>{{ result.constraintsets }}</td>
+                      <td>{{ result.diffpairs }}</td>
+                      <td>{{ result.matchgroups}}</td>
+                      <td>{{ result.netclasses}}</td>
+                      <td>{{ result.net_with_constraints}}</td>
+                      <td>{{ result.pinpairs}}</td>
+                      <td>{{ result.xnets}}</td>
+                </tr>
+
+                {% empty %}
+                    <p>No results found.</p>
+                {% endfor %}
+                </table>
+            {%endif%}
+
+
+{% endblock %}
+
+

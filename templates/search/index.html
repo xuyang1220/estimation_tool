@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block newtask %}
+    <div>
+        <h2>Start A New Estimation</h2>
+    </div>
+    <div class="col-md-10">
+         <form action="." method="POST" class="form-horizontal" role="form" id="myForm">
+         {% csrf_token %}
+            <div class="row">
+              <label class="col-sm-2 control-label for=id_category"> Category: </label>
+              <div class="col-md-4">
+                <select class="input-sm" name="category" id="id_category">
+                  <option>LED</option>
+                  <option>Mother</option>
+                  <option>Daughter</option>
+                  <option>Carrier</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+             <div class="row">
+                <label for="id_part_number2" class="col-sm-2 control-label">Part Number: </label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control input-sm" id="id_part_number2" name="part_number2" placeholder="e.g. XXX-XXXXXX">
+                </div>
+                <div class="col-md-6">
+                    <b class="text-warning">{{errormessage}}</b>
+                </div>
+             </div>
+             <div class="row">
+                <label for="id_dat_file_location" class="col-sm-2 control-label">Dat File Directory: </label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control input-sm" id="id_dat_file_location" name="dat_file_location" placeholder="Directory">
+                    <!--input type="file" id="id_dat_file_location" name="dat_file_location" value="Browse Directory" webkitdirectory="" directory=""-->
+                </div>
+             </div>
+
+             <div class="text-center">
+               <button type='submit' name="Start_Estimation" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Start Estimation</button>
+             </div>
+
+            <!-- Modal -->
+            <div class='modal fade' id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Warning</h4>
+                  </div>
+                  <div class="modal-body">
+                    This Part Number Already Exists in Our Database, Do You Want to Save Changes?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" name="Save_Anyway" class="btn btn-primary">Save Changes</button>
+                  </div>
+                </div>
+              </div>
+             </div>
+
+         </form>
+    </div>
+
+{% endblock %}

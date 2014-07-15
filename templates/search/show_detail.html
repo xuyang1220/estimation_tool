@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% block showdetail %}
+    <div class="well">
+        <h2>The Detail for {{ Combine.part_number }} is: </h2>
+        <form action="" method="POST">
+        {% csrf_token %}
+
+            <div class="panel-group" id="accordion">
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-target="#collapseO" href="#">
+                      <h4>Basic:</h4>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseO" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-4">Part Number</div>
+                      <div class="col-md-8">{{ Combine.part_number }}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Category</div>
+                      <div class="col-md-8">{{ Combine.category }}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Estimated Time(Days)</div>
+                      <div class="col-md-8">{{ Combine.estimated_total_days }}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Adjusted Time(Days)</div>
+                      <div class="col-md-4">{{ Combine.adjusted_total_days }}</div>
+                       <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal1"></span>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Actual Time(Days)</div>
+                      <div class="col-md-4">{{ Combine.total_days }}</div>
+                      <span class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal2"></span>
+                    </div>
+
+                     <div class='modal fade' id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabe1" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Update Adjusted Time(In Days)</h4>
+                          </div>
+                          <div class="modal-body center">
+                            <input name='adjusteddays' type="text" maxlength="100"/>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" name='up1' class="btn btn-primary">Update</button>
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+
+                     <div class='modal fade' id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabe2">Update Actual Time(In Days)</h4>
+                          </div>
+                          <div class="modal-body center">
+                            <input  name='actualdays' type="text" maxlength="100"/>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" name='up2' class="btn btn-primary">Update</button>
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Part Name</div>
+                      <div class="col-md-8">{{ Combine.part_name }}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Project Name</div>
+                      <div class="col-md-8">{{ Combine.project_name }}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Width</div>
+                      <div class="col-md-4">{{ Combine.board_width }}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Height</div>
+                      <div class="col-md-4">{{ Combine.board_height}}</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Pins</div>
+                      <div class="col-md-4">{{ Combine.pins }}</div>
+                      <div class="col-md-4"><label for="id_pin_diff">+-:</label>
+                        <input id="id_pin_diff" type="text" name="pin_diff" maxlength="100" />
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">Components</div>
+                      <div class="col-md-4">{{ Combine.components }}</div>
+                      <div class="col-md-4"><label for="id_component_diff">+-:</label>
+                        <input id="id_component_diff" type="text" name="component_diff" maxlength="100"/></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-target="#collapseZero" href="#">
+                      <h4>Advanced:</h4>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseZero" class="panel-collapse collapse">
+                  <div class="panel-body">
+                        <div class="row">
+                          <div class="col-md-4">BGA/LGAs</div>
+                          <div class="col-md-4">{{ Combine.bga_lgas }}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">DIMMs</div>
+                          <div class="col-md-4">{{ Combine.dimms }}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Pin_density</div>
+                          <div class="col-md-4">{{ Combine.pin_density }}</div>
+                          <div class="col-md-4"><label for="id_pin_density_diff">+-:</label>
+                            <input id="id_pin_density_diff" type="text" name="pin_density_diff" maxlength="100"/></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Total Layers</div>
+                          <div class="col-md-4">{{ Combine.total_layers}}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Plane Layers</div>
+                          <div class="col-md-4">{{ Combine.plane_layers}}</div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-target="#collapseOne" href="#">
+                      <h4>Constraints:</h4>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                  <div class="panel-body">
+                        <div class="row">
+                          <div class="col-md-4">Buses</div>
+                          <div class="col-md-4">{{ Combine.buses}}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Constraint Sets</div>
+                          <div class="col-md-4">{{ Combine.constraintsets}}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Diff Pairs</div>
+                          <div class="col-md-4">{{ Combine.diffpairs}}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Match Groups</div>
+                          <div class="col-md-4">{{ Combine.matchgroups}}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Net Classes</div>
+                          <div class="col-md-4">{{ Combine.netclasses}}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Net With Constraints</div>
+                          <div class="col-md-4">{{ Combine.net_with_constraints}}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Pin Pairs</div>
+                          <div class="col-md-4">{{ Combine.pinpairs}}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-4">Xnets</div>
+                          <div class="col-md-4">{{ Combine.xnets}}</div>
+                        </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-target="#collapseTwo" href="#">
+                      <h4>Other JTS information:</h4>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                  <div class="panel-body">
+                       <div class="row">
+                          <div class="col-md-4">Sequential Lam</div>
+                          <div class="col-md-4">Via Type Bury</div>
+                          <div class="col-md-4">Via Type Blind</div>
+                        </div>
+
+                        <div class="row">
+                          {% if Combine.sequential_lam %}
+                          <div class="col-md-4">YES</div>
+                          {% else %}
+                          <div class="col-md-4">NO</div>
+                          {% endif %}
+
+                          {% if Combine.via_type_bury%}
+                          <div class="col-md-4">YES</div>
+                          {% else %}
+                          <div class="col-md-4">NO</div>
+                          {% endif %}
+
+                          {% if Combine.via_type_blind%}
+                          <div class="col-md-4">YES</div>
+                          {% else %}
+                          <div class="col-md-4">NO</div>
+                          {% endif %}
+
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class='form-actions'>
+                <input type="submit" name="search1" value="Search Similar" class="btn btn-primary"/>
+                <a href="{% url 'showformula' Combine.part_number%}"><input type="button" value="Show Formula" class="btn btn-primary"/></a>
+                <a href="{% url 'index'%}"><input type="button" value="Return" class="btn btn-primary"/></a>
+            </p>
+
+            {% block errormessage %}{% endblock %}
+        </form>
+    </div>
+{% endblock %}
+

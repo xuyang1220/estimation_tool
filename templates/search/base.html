@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load url from future %}
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Board Estimation Tool</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/code.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/mine.css">
+    <!-- Bootstrap JavaScript-->
+    <script src="{{ STATIC_URL }}jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <!--script>
+        // this is the id of the form
+            $("#myForm").submit(function() {
+
+                var url = "path/to/your/script.php"; // the script where you handle the form input.
+
+                $.ajax({
+                       type: "POST",
+                       url: url,
+                       data: $("#idForm").serialize(), // serializes the form's elements.
+                       success: function(data)
+                       {
+                           alert(data); // show response from the php script.
+                       }
+                     });
+
+                return false; // avoid to execute the actual submit of the form.
+            });
+    </script-->
+    <!-- Custom styles for this template -->
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+    <style>
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <a class="navbar-brand" href={% url 'index' %}>Board Estimation Tool</a>
+          <form class="navbar-form navbar-right" role="form" action="." method="post">
+            {% csrf_token %}
+            {%block search%}
+                <a href={% url 'search'%}><li class="btn btn-default">Search</li></a>
+            {% endblock %}
+            <div class="form-group">
+              <a href={% url 'advancedsearch'%}>Advanced Search</a>
+            </div>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+    <div class="container">
+        {% block newtask %}{% endblock %}
+        {% block login %}{% endblock %}
+        {% block showdetail %}{% endblock %}
+    </div>
+    {% block advancedsearch %}{% endblock %}
+    {% block showsimilar %}{% endblock %}
+    <div class="container">
+        <footer>
+                 <p>© Oracle 2014</p>
+        </footer>
+    </div>
+</body>

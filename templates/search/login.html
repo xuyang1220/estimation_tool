@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+  
+<div class="container">
+    {% block login %}
+    {% if password_is_wrong %}
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>Error</h4>User name and password not match, please try again.
+        </div>
+    {% endif %}
+    <div class="well">
+        <h1>Board Estimation Tool</h1>
+        <p> </p>
+        <form class="form-horizontal" action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p class="form-actions">
+                <input type="submit" value="Login" class="btn btn-primary">
+                <a href="/contactme/"><input type="button" value="Forget Password" class="btn btn-danger"></a>
+                <a href="/contactme/"><input type="button" value="New User?" class="btn btn-success"></a>
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock %}
+  
+
