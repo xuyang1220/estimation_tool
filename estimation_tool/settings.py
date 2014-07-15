@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'haystack',
     'BET',
-    'south',
+    #'south',
     'bootstrap_toolkit',
 )
 
