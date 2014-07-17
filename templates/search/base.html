@@ -72,7 +72,9 @@
                 <a href={% url 'search'%}><li class="btn btn-default">Search</li></a>
             {% endblock %}
             <div class="form-group">
-              <a href={% url 'advancedsearch'%}>Advanced Search</a>
+            <ul class="nav navbar-nav">
+              <li><a href={% url 'advancedsearch'%}>Advanced Search</a></li>
+            </ul>
             </div>
           </form>
         </div><!--/.navbar-collapse -->
