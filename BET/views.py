@@ -5,7 +5,7 @@ from django.views.generic import View
 from django.core.urlresolvers import reverse
 from django.contrib.admin.views.decorators import staff_member_required
 import datetime
-from haystack.views import SearchView
+#from haystack.views import SearchView
 from forms import RangeForm, NewTaskForm, SingleSearchForm
 from django.template import RequestContext
 #from regression import est_time, model
@@ -133,13 +133,13 @@ def index(request):
         print "------------POST IT!!!!!!!!!!!!!------"
         form = NewTaskForm(request.POST)
         if form.is_valid():
-            print "---------------Is valid--------------"
             (err, newtask) = form.get_statistics()
-            #print 'Pin number is %s' %newtask.pins
             partnumber = form.cleaned_data['part_number2']
-            if err == 'Success!' or err == 'Warning! overwriting existing data in databases! Part number %s already exists in our database' %(partnumber):
+            if err == 'Success!':
                 newtask.save()
                 return HttpResponseRedirect( "/showdetail/%s" % partnumber)
+            # elif err == 'Warning! overwriting existing data in databases! Part number %s already exists in our database, not updated!' %(partnumber):
+            #     return HttpResponseRedirect( "/showdetail/%s" % partnumber)
             else:
                 return render_to_response('search/index.html', {'form': form, 'errormessage':err}, RequestContext(request))
         else:

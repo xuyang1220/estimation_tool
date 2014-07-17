@@ -1,7 +1,7 @@
 __author__ = 'yaxxu'
 from django import forms
-from haystack.forms import SearchForm
-from haystack.query import *
+# from haystack.forms import SearchForm
+# from haystack.query import *
 from models import *
 from django.contrib.auth.models import User
 from bootstrap_toolkit.widgets import BootstrapDateInput, BootstrapTextInput, BootstrapUneditableInput
@@ -60,15 +60,15 @@ class AdvancedSearchForm(forms.Form):
         return sqs
 
 
-class SearchByPartNumber(SearchForm):
-    def search(self):
-        # # First, store the SearchQuerySet received from other processing.
-        sqs = super(SearchByPartNumber, self).search()
-
-        if not self.is_valid():
-            return sqs
-
-        return sqs
+# class SearchByPartNumber(SearchForm):
+#     def search(self):
+#         # # First, store the SearchQuerySet received from other processing.
+#         sqs = super(SearchByPartNumber, self).search()
+#
+#         if not self.is_valid():
+#             return sqs
+#
+#         return sqs
 
 # class FacetedSearchView(SearchView):
 #     def extra_context(self):

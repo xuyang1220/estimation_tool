@@ -305,10 +305,10 @@ class PartInfo(models.Model):
     partnumber = models.CharField(db_column='partNumber', max_length=16, blank=True) # Field name made lowercase.
     partname = models.CharField(db_column='partName', max_length=50, blank=True) # Field name made lowercase.
     projectname = models.CharField(db_column='projectName', max_length=50, blank=True) # Field name made lowercase.
-    width = models.FloatField(blank=True, null=True)
-    height = models.FloatField(blank=True, null=True)
+    board_width = models.FloatField(db_column='width',blank=True, null=True)
+    board_height = models.FloatField(db_column='height',blank=True, null=True)
     dimensionsuom = models.CharField(db_column='dimensionsUOM', max_length=6, blank=True) # Field name made lowercase.
-    thickness = models.FloatField(blank=True, null=True)
+    board_thickness = models.FloatField(db_column='thickness',blank=True, null=True)
     thicknesstolerance = models.FloatField(db_column='thicknessTolerance', blank=True, null=True) # Field name made lowercase.
     thicknessuom = models.CharField(db_column='thicknessUOM', max_length=6, blank=True) # Field name made lowercase.
     estimatedtotallayers = models.IntegerField(db_column='estimatedTotalLayers', blank=True, null=True) # Field name made lowercase.
@@ -351,7 +351,7 @@ class PartInfo(models.Model):
     subpanelsize = models.CharField(db_column='subpanelSize', max_length=30, blank=True) # Field name made lowercase.
     subpanelimages = models.IntegerField(db_column='subpanelImages', blank=True, null=True) # Field name made lowercase.
     class Meta:
-        managed = 'false'
+        #managed = 'false'
         db_table = 'bet_PartInfo'
         app_label = 'BET'
 

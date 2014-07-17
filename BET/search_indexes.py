@@ -1,5 +1,5 @@
 __author__ = 'yaxxu'
-from haystack import indexes
+#from haystack import indexes
 from BET.models import Schematic,Combine
 
 
