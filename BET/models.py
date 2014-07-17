@@ -302,58 +302,68 @@ class CombineAdmin(admin.ModelAdmin):
 admin.site.register(Combine, CombineAdmin)
 
 class PartInfo(models.Model):
-    partnumber = models.CharField(db_column='partNumber', max_length=16, blank=True) # Field name made lowercase.
-    partname = models.CharField(db_column='partName', max_length=50, blank=True) # Field name made lowercase.
-    projectname = models.CharField(db_column='projectName', max_length=50, blank=True) # Field name made lowercase.
-    board_width = models.FloatField(db_column='width',blank=True, null=True)
-    board_height = models.FloatField(db_column='height',blank=True, null=True)
-    dimensionsuom = models.CharField(db_column='dimensionsUOM', max_length=6, blank=True) # Field name made lowercase.
-    board_thickness = models.FloatField(db_column='thickness',blank=True, null=True)
-    thicknesstolerance = models.FloatField(db_column='thicknessTolerance', blank=True, null=True) # Field name made lowercase.
-    thicknessuom = models.CharField(db_column='thicknessUOM', max_length=6, blank=True) # Field name made lowercase.
-    estimatedtotallayers = models.IntegerField(db_column='estimatedTotalLayers', blank=True, null=True) # Field name made lowercase.
-    boarddensity = models.CharField(db_column='boardDensity', max_length=6, blank=True) # Field name made lowercase.
-    boarddensitycomment = models.CharField(db_column='boardDensityComment', max_length=80, blank=True) # Field name made lowercase.
-    activecomponents = models.CharField(db_column='activeComponents', max_length=11, blank=True) # Field name made lowercase.
-    telcordiarequired = models.CharField(db_column='telcordiaRequired', max_length=3, blank=True) # Field name made lowercase.
-    telcordiarequiredcomment = models.CharField(db_column='telcordiaRequiredComment', max_length=80, blank=True) # Field name made lowercase.
-    oldassemblymethod = models.CharField(db_column='oldAssemblyMethod', max_length=19, blank=True) # Field name made lowercase.
-    intendedassemblymethodcomment = models.CharField(db_column='intendedAssemblyMethodComment', max_length=80, blank=True) # Field name made lowercase.
-    contactfingers = models.CharField(db_column='contactFingers', max_length=40, blank=True) # Field name made lowercase.
-    contactfingerscomment = models.CharField(db_column='contactFingersComment', max_length=80, blank=True) # Field name made lowercase.
-    regularfeaturescomment = models.CharField(db_column='regularFeaturesComment', max_length=80, blank=True) # Field name made lowercase.
-    viatypescomment = models.CharField(db_column='viaTypesComment', max_length=80, blank=True) # Field name made lowercase.
-    totalholes = models.IntegerField(db_column='totalHoles', blank=True, null=True) # Field name made lowercase.
-    unfilledthruholesize = models.FloatField(db_column='unfilledThruHoleSize', blank=True, null=True) # Field name made lowercase.
-    dielectricmaterials = models.CharField(db_column='dielectricMaterials', max_length=30, blank=True) # Field name made lowercase.
-    dielectricmaterialscomment = models.CharField(db_column='dielectricMaterialsComment', max_length=80, blank=True) # Field name made lowercase.
-    primaryfinish = models.CharField(db_column='primaryFinish', max_length=40, blank=True) # Field name made lowercase.
-    primaryfinishcomment = models.CharField(db_column='primaryFinishComment', max_length=80, blank=True) # Field name made lowercase.
-    assemblyreflowalloy = models.CharField(db_column='assemblyReflowAlloy', max_length=40, blank=True) # Field name made lowercase.
-    intendedassemblymethod = models.CharField(db_column='intendedAssemblyMethod', max_length=40, blank=True) # Field name made lowercase.
-    unfilledthruholequantity = models.IntegerField(db_column='unfilledThruHoleQuantity', blank=True, null=True) # Field name made lowercase.
-    filledthruholesize = models.FloatField(db_column='filledThruHoleSize', blank=True, null=True) # Field name made lowercase.
-    filledthruholequantity = models.IntegerField(db_column='filledThruHoleQuantity', blank=True, null=True) # Field name made lowercase.
-    blindtop2viasize = models.FloatField(db_column='blindTop2ViaSize', blank=True, null=True) # Field name made lowercase.
-    blindtop2viaquantity = models.IntegerField(db_column='blindTop2ViaQuantity', blank=True, null=True) # Field name made lowercase.
-    blindtop3viasize = models.FloatField(db_column='blindTop3ViaSize', blank=True, null=True) # Field name made lowercase.
-    blindtop3viaquantity = models.IntegerField(db_column='blindTop3ViaQuantity', blank=True, null=True) # Field name made lowercase.
-    blindbottom2viasize = models.FloatField(db_column='blindBottom2ViaSize', blank=True, null=True) # Field name made lowercase.
-    blindbottom2viaquantity = models.IntegerField(db_column='blindBottom2ViaQuantity', blank=True, null=True) # Field name made lowercase.
-    blindbottom3viasize = models.FloatField(db_column='blindBottom3ViaSize', blank=True, null=True) # Field name made lowercase.
-    blindbottom3viaquantity = models.IntegerField(db_column='blindBottom3ViaQuantity', blank=True, null=True) # Field name made lowercase.
-    buriedviasize = models.FloatField(db_column='buriedViaSize', blank=True, null=True) # Field name made lowercase.
-    buriedviaquantity = models.IntegerField(db_column='buriedViaQuantity', blank=True, null=True) # Field name made lowercase.
-    buriedviacorequantity = models.IntegerField(db_column='buriedViaCoreQuantity', blank=True, null=True) # Field name made lowercase.
-    dimmquantity = models.IntegerField(db_column='dimmQuantity', blank=True, null=True) # Field name made lowercase.
-    tiebarspermitted = models.CharField(db_column='tieBarsPermitted', max_length=4, blank=True) # Field name made lowercase.
-    maxdf = models.FloatField(db_column='maxDf', blank=True, null=True) # Field name made lowercase.
-    subpanelsize = models.CharField(db_column='subpanelSize', max_length=30, blank=True) # Field name made lowercase.
-    subpanelimages = models.IntegerField(db_column='subpanelImages', blank=True, null=True) # Field name made lowercase.
+    board_width = models.FloatField(db_column='width', blank=True, null=True) # Field name made lowercase. Field renamed to remove unsuitable characters.
+    board_height = models.FloatField(db_column='height', blank=True, null=True) # Field name made lowercase. Field renamed to remove unsuitable characters.
+    part_number = models.CharField(db_column='partNumber', primary_key=True, max_length=80) # Field name made lowercase.
+    part_name = models.CharField(db_column='partName', max_length=50, blank=True) # Field name made lowercase.
+    project_name = models.CharField(db_column='projectName', max_length=50, blank=True) # Field name made lowercase.
     class Meta:
-        #managed = 'false'
         db_table = 'bet_PartInfo'
         app_label = 'BET'
+
+# class PartInfo(models.Model):
+#     partnumber = models.CharField(db_column='partNumber', max_length=16, blank=True) # Field name made lowercase.
+#     partname = models.CharField(db_column='partName', max_length=50, blank=True) # Field name made lowercase.
+#     projectname = models.CharField(db_column='projectName', max_length=50, blank=True) # Field name made lowercase.
+#     board_width = models.FloatField(db_column='width',blank=True, null=True)
+#     board_height = models.FloatField(db_column='height',blank=True, null=True)
+#     dimensionsuom = models.CharField(db_column='dimensionsUOM', max_length=6, blank=True) # Field name made lowercase.
+#     board_thickness = models.FloatField(db_column='thickness',blank=True, null=True)
+#     thicknesstolerance = models.FloatField(db_column='thicknessTolerance', blank=True, null=True) # Field name made lowercase.
+#     thicknessuom = models.CharField(db_column='thicknessUOM', max_length=6, blank=True) # Field name made lowercase.
+#     estimatedtotallayers = models.IntegerField(db_column='estimatedTotalLayers', blank=True, null=True) # Field name made lowercase.
+#     boarddensity = models.CharField(db_column='boardDensity', max_length=6, blank=True) # Field name made lowercase.
+#     boarddensitycomment = models.CharField(db_column='boardDensityComment', max_length=80, blank=True) # Field name made lowercase.
+#     activecomponents = models.CharField(db_column='activeComponents', max_length=11, blank=True) # Field name made lowercase.
+#     telcordiarequired = models.CharField(db_column='telcordiaRequired', max_length=3, blank=True) # Field name made lowercase.
+#     telcordiarequiredcomment = models.CharField(db_column='telcordiaRequiredComment', max_length=80, blank=True) # Field name made lowercase.
+#     oldassemblymethod = models.CharField(db_column='oldAssemblyMethod', max_length=19, blank=True) # Field name made lowercase.
+#     intendedassemblymethodcomment = models.CharField(db_column='intendedAssemblyMethodComment', max_length=80, blank=True) # Field name made lowercase.
+#     contactfingers = models.CharField(db_column='contactFingers', max_length=40, blank=True) # Field name made lowercase.
+#     contactfingerscomment = models.CharField(db_column='contactFingersComment', max_length=80, blank=True) # Field name made lowercase.
+#     regularfeaturescomment = models.CharField(db_column='regularFeaturesComment', max_length=80, blank=True) # Field name made lowercase.
+#     viatypescomment = models.CharField(db_column='viaTypesComment', max_length=80, blank=True) # Field name made lowercase.
+#     totalholes = models.IntegerField(db_column='totalHoles', blank=True, null=True) # Field name made lowercase.
+#     unfilledthruholesize = models.FloatField(db_column='unfilledThruHoleSize', blank=True, null=True) # Field name made lowercase.
+#     dielectricmaterials = models.CharField(db_column='dielectricMaterials', max_length=30, blank=True) # Field name made lowercase.
+#     dielectricmaterialscomment = models.CharField(db_column='dielectricMaterialsComment', max_length=80, blank=True) # Field name made lowercase.
+#     primaryfinish = models.CharField(db_column='primaryFinish', max_length=40, blank=True) # Field name made lowercase.
+#     primaryfinishcomment = models.CharField(db_column='primaryFinishComment', max_length=80, blank=True) # Field name made lowercase.
+#     assemblyreflowalloy = models.CharField(db_column='assemblyReflowAlloy', max_length=40, blank=True) # Field name made lowercase.
+#     intendedassemblymethod = models.CharField(db_column='intendedAssemblyMethod', max_length=40, blank=True) # Field name made lowercase.
+#     unfilledthruholequantity = models.IntegerField(db_column='unfilledThruHoleQuantity', blank=True, null=True) # Field name made lowercase.
+#     filledthruholesize = models.FloatField(db_column='filledThruHoleSize', blank=True, null=True) # Field name made lowercase.
+#     filledthruholequantity = models.IntegerField(db_column='filledThruHoleQuantity', blank=True, null=True) # Field name made lowercase.
+#     blindtop2viasize = models.FloatField(db_column='blindTop2ViaSize', blank=True, null=True) # Field name made lowercase.
+#     blindtop2viaquantity = models.IntegerField(db_column='blindTop2ViaQuantity', blank=True, null=True) # Field name made lowercase.
+#     blindtop3viasize = models.FloatField(db_column='blindTop3ViaSize', blank=True, null=True) # Field name made lowercase.
+#     blindtop3viaquantity = models.IntegerField(db_column='blindTop3ViaQuantity', blank=True, null=True) # Field name made lowercase.
+#     blindbottom2viasize = models.FloatField(db_column='blindBottom2ViaSize', blank=True, null=True) # Field name made lowercase.
+#     blindbottom2viaquantity = models.IntegerField(db_column='blindBottom2ViaQuantity', blank=True, null=True) # Field name made lowercase.
+#     blindbottom3viasize = models.FloatField(db_column='blindBottom3ViaSize', blank=True, null=True) # Field name made lowercase.
+#     blindbottom3viaquantity = models.IntegerField(db_column='blindBottom3ViaQuantity', blank=True, null=True) # Field name made lowercase.
+#     buriedviasize = models.FloatField(db_column='buriedViaSize', blank=True, null=True) # Field name made lowercase.
+#     buriedviaquantity = models.IntegerField(db_column='buriedViaQuantity', blank=True, null=True) # Field name made lowercase.
+#     buriedviacorequantity = models.IntegerField(db_column='buriedViaCoreQuantity', blank=True, null=True) # Field name made lowercase.
+#     dimmquantity = models.IntegerField(db_column='dimmQuantity', blank=True, null=True) # Field name made lowercase.
+#     tiebarspermitted = models.CharField(db_column='tieBarsPermitted', max_length=4, blank=True) # Field name made lowercase.
+#     maxdf = models.FloatField(db_column='maxDf', blank=True, null=True) # Field name made lowercase.
+#     subpanelsize = models.CharField(db_column='subpanelSize', max_length=30, blank=True) # Field name made lowercase.
+#     subpanelimages = models.IntegerField(db_column='subpanelImages', blank=True, null=True) # Field name made lowercase.
+#     class Meta:
+#         #managed = 'false'
+#         db_table = 'bet_PartInfo'
+#         app_label = 'BET'
 
 class Physicalboard(models.Model):
     part_number = models.CharField(db_column='Part_number', primary_key=True, max_length=80) # Field name made lowercase.

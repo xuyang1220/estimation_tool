@@ -115,9 +115,9 @@ class NewTaskForm(forms.Form):
             newtask = getbigcomponents(directory,newtask)
             newtask = getconstraints(directory,newtask)
             newtask.part_name = query.part_name
-            newtask.project_name = query.projectname
-            newtask.board_width = query.width
-            newtask.board_height = query.height
+            newtask.project_name = query.project_name
+            newtask.board_width = query.board_width
+            newtask.board_height = query.board_height
             print newtask.pins, newtask.constraintsets
             # except:
             #     err='Part Number not Found in JTS or No Such Directory'
